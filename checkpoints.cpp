@@ -41,7 +41,7 @@ namespace Checkpoints
         ( 2018,    uint256("0x451918b13bf1eab2c5d42fab35c125bb9e449f49de75f92feb5a246b0dc24ff4") ) // year of INX check
         ( 4200,    uint256("0x7377e303e6fe18d93984b851205e9468495e4af122994a73c17b62ba548d5682") ) // ... goes on
         ( 8300,    uint256("0x267f173084672a65d41d77ec16bd51aebffeb47110927a9f0309f8b6f4d9b267") ) // stable check
-        ( 14100,   uint256("0x5a1dd71778fc7d88d2cfe379b2fcdcd3f81b2570c1eeaa006c76e819d8ab2f26") ) // ... goes on
+        ( 15670,   uint256("0x225d109aa2540fa579000ceb565f617472215fa5529ad2b07635de42f0c72cb4") ) // ... goes on
         ;
 
     static MapCheckpoints mapCheckpointsTestnet =
