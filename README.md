@@ -1,16 +1,15 @@
-What is InnovaMinex
-===================
+¿Qué es InnovaMinex ?
+=====================
+Es un modelo de negocio innovador que utiliza la tecnología blockchain para garantizar la trazabilidad del metal precioso. Aplicando un conjunto de procedimientos, es posible certificar el proceso completo desde su procedencia en la explotación minera, pasando por la refinería, hasta su posterior comercialización al cliente final. Esta comercialización se lleva a cabo a través de nuestros e-commerce, tiendas asociadas o nuestros propios cajeros automáticos.
 
-It is an innovative business model that uses blockchain technology to guarantee the traceability of precious metals. By applying a set of procedures, it is possible to certify the whole process, from its origin in the mines, to the refinery and the commercialization to the end consumer. This commercialization is done through our e-commerce, partner stores and our own ATMs.
+Esto permitirá a los compradores verificar el origen del metal que hayan adquirido, asegurándose de la legalidad de la extracción, de que se haya respetado en todo momento el medioambiente, o de que no se pueda usar para blanqueo de capitales ya que las transacciones quedan registradas, y toda la comunidad tiene acceso a ellas.
 
-This will allow buyers to verify the origin of the metal they have acquired, insuring that the extraction is legal, that the environment has been protected at all times, or that it cannot be used for money laundering, since all transactions are registered and the whole community has access to them.
+Nuestro objetivo final, es hacer que el oro y otros metales preciosos sean más asequibles para todos los inversores, grandes y pequeños, a través de nuestra criptomoneda, el “INX”, consiguiendo el mejor precio posible tanto para nuestros clientes como para nuestra comunidad, poniendo énfasis en la transparencia y seguridad de nuestras transacciones.
 
-Our ultimate goal is making gold and other precious metals more accessible to all investors – large & small – through our crytpocurrency, INX, obtaining the best possible price both for our clients and for our community, with emphasis being placed on the transparency and safety of our transactions. 
-
-RazielCore Algorithm
+Algoritmo RazielCore
 ====================
 
-RazielCore is a proprietary algoritm only in use with INX Cryptocurrency. It uses complex hashing functions keeping the blockchain ledger data secure and fast at the same time. 
+RazielCore es un algoritmo propietario solo usado con la criptomoneda INX. Utiliza complejas funciones resumen (hash) que mantienen los datos en la cadena de bloques (blockchain) rápidos y seguros.
 <br> <br>
 http://www.innovaminex.com
 <br>
