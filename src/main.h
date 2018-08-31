@@ -1,3 +1,4 @@
+// Copyright (c) 2018 InnovaMinex
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
@@ -59,7 +60,7 @@ inline bool IsProtocolV1RetargetingFixed(int nHeight) { return TestNet() || nHei
 inline bool IsProtocolV2(int nHeight) { return TestNet() || nHeight > 0; }
 inline bool IsProtocolV3(int64_t nTime) { return TestNet() || nTime > 1470467000; }
 
-inline bool IsDriftReduced(int64_t nTime) { return TestNet() || nTime > 1479513600; } // Drifting Bug Fix, hardfork on Sat, 19 Nov 2016 00:00:00 GMT
+inline bool IsDriftReduced(int64_t nTime) { return TestNet() || nTime > 1479513600; } // Drift Fix
 
 inline int64_t TestingDrift(int64_t nTime) { return nTime + 128 * 60 * 60; }
 inline int64_t MainNetDrift(int64_t nTime) { return nTime + 15; }
