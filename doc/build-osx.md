@@ -1,4 +1,4 @@
-# Mac OS X innovaminexd Build Instructions
+# Mac OS X Build Instructions
 
 Copyright (c) 2009-2012 Bitcoin Developers
 Distributed under the MIT/X11 software license, see the accompanying file
