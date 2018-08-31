@@ -1,0 +1,86 @@
+Head over to https://www.raspberrypi.org/downloads/raspbian/ and download the LITE version. As of writing this, it is 
+RASPBIAN STRETCH LITE. Extract the file with .img extension only from the compressed archieve.
+Download the microSD card burner from https://etcher.io
+Insert your microSD card reader/writer and burn the .img file on your microSD card.
+After a successful burn & eject , remove the microSD card from the writer and insert it into Raspberry Pi and hook it up with a 
+HDMI Monitor or a TV. For video demonstration, just watch https://www.youtube.com/watch?v=GJDIgS8nres
+
+Default login is "pi" and password is "raspberry"
+Run raspi-config and enable ssh access on your Pi first. ( you have to use sudo there )
+Read: http://www.instructables.com/id/Use-ssh-to-talk-with-your-Raspberry-Pi/
+Find out the IP address of your Pi by logging into your home DSL/Fiber device. It will show as "pi".
+
+From now on, just paste the following commands to your raspberry
+
+# setup sudo access if required
+sudo passwd 
+
+# update packages
+sudo apt-get update
+sudo apt-get upgrade -y
+
+# install dependencies
+sudo apt-get install build-essential libssl-dev libdb++-dev libdb-dev libboost-all-dev libqrencode-dev libminiupnpc-dev git
+
+# clone innovaminex github
+sudo git clone https://github.com/innovaminexd/source.git innovaminex
+
+# build leveldb
+cd ~/innovaminex/src/leveldb/
+sudo chmod +x build_detect_platform
+sudo make libleveldb.a libmemenv.a
+
+# builds wallet and daemon for pi
+cd ~/innovaminex/src/
+sudo make -f makefile.unix -j2 
+
+# reduce binary size
+sudo strip innovaminexd
+
+# copy daemon binary for system wide access (optional)
+sudo mv innovaminexd /usr/bin/innovaminexd
+
+# run it once and wait for it to give you a config missing error
+innovaminexd 
+
+# copy conf template (note: staking has already been enabled)
+cd ~/.innovaminex
+wget https://raw.githubusercontent.com/innovaminexd/releases/master/innovaminex.conf
+#####################################################
+# WARNING CHANGE RPC PASSWORD IN innovaminex.conf FILE
+#####################################################
+
+# run the wallet or the daemon. You can check the sync progress by issuing:
+innovaminexd 
+
+# check debug
+tail -f .innovaminexd/debug.log ( press Ctrl+C to cancel )
+
+# get a wallet address
+innovaminexd getnewaddress
+
+# copy that address and send 1 INX as a test. 
+# Wait for a block confirmation and it should show up after you run:
+innovaminexd getbalance
+
+# to check status and connections
+innovaminexd getinfo
+
+# to checki wallet staking
+innovaminexd getstakinginfo
+# make sure it says "enabled: true" and "staking: true"
+
+
+# If you wish to take backup of your staking wallet or copy over your 
+# current desktop wallet, use WinSCP or Filezilla client.
+# Be sure to specify IP, user and password in the file transfer client. 
+# Protocol should be SCP and port 22. 
+# For Filezilla, use the following :
+
+host: sftp://pi-ipaddress user: pi password:your-password port:22
+
+# Jump to .innovaminex folder and copy the wallet.dat 
+# or place your wallet backup there in that folder. 
+# ( Important: Make sure you run 'innovaminexd stop' before you modify conf/wallet files
+
+# thats pretty much it. ask devs for tips on Discord or Telegram on how to stake INX on your PI.
