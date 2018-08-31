@@ -12,4 +12,6 @@ RazielCore Algorithm
 
 RazielCore is a proprietary algoritm only in use with INX Cryptocurrency. It uses complex hashing functions keeping the blockchain ledger data secure and fast at the same time. 
 <br> <br>
-www.innovaminex.com
+http://www.innovaminex.com
+<br>
+http://explorer.innovaminex.com
