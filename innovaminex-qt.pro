@@ -1,3 +1,4 @@
+# Mandatory libboost version requirements below. 
 TEMPLATE = app
 DEFINES += fName1 fName2
 fName1 = "innovaminex-qt"
