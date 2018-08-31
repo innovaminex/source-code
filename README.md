@@ -14,3 +14,5 @@ RazielCore es un algoritmo propietario solo usado con la criptomoneda INX. Utili
 http://www.innovaminex.com
 <br>
 http://explorer.innovaminex.com
+<br>
+http://explorer2.innovaminex.com
