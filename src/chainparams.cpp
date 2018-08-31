@@ -119,14 +119,14 @@ public:
         vSeeds.push_back(CDNSSeedData("node12.hardline.ltd", "node12.hardline.ltd"));
         vSeeds.push_back(CDNSSeedData("node13.hardline.ltd", "node13.hardline.ltd"));
         vSeeds.push_back(CDNSSeedData("node14.hardline.ltd", "node14.hardline.ltd"));
-	vSeeds.push_back(CDNSSeedData("tn0.innovaminex.com", "tn0.innovaminex.com"));
-	vSeeds.push_back(CDNSSeedData("tn1.innovaminex.com", "tn1.innovaminex.com"));
-	vSeeds.push_back(CDNSSeedData("tn2.innovaminex.com", "tn2.innovaminex.com"));
-	vSeeds.push_back(CDNSSeedData("tn3.innovaminex.com", "tn3.innovaminex.com"));
-	vSeeds.push_back(CDNSSeedData("tn4.innovaminex.com", "tn4.innovaminex.com"));
-	vSeeds.push_back(CDNSSeedData("tn5.innovaminex.com", "tn5.innovaminex.com"));
-	vSeeds.push_back(CDNSSeedData("tn6.innovaminex.com", "tn6.innovaminex.com"));
-	vSeeds.push_back(CDNSSeedData("tn7.innovaminex.com", "tn7.innovaminex.com"));
+	 vSeeds.push_back(CDNSSeedData("tn0.innovaminex.com", "tn0.innovaminex.com"));
+	 vSeeds.push_back(CDNSSeedData("tn1.innovaminex.com", "tn1.innovaminex.com"));
+	 vSeeds.push_back(CDNSSeedData("tn2.innovaminex.com", "tn2.innovaminex.com"));
+	 vSeeds.push_back(CDNSSeedData("tn3.innovaminex.com", "tn3.innovaminex.com"));
+	 vSeeds.push_back(CDNSSeedData("tn4.innovaminex.com", "tn4.innovaminex.com"));
+	 vSeeds.push_back(CDNSSeedData("tn5.innovaminex.com", "tn5.innovaminex.com"));
+	 vSeeds.push_back(CDNSSeedData("tn6.innovaminex.com", "tn6.innovaminex.com"));
+	 vSeeds.push_back(CDNSSeedData("tn7.innovaminex.com", "tn7.innovaminex.com"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,102);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,28);
