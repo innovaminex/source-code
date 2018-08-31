@@ -11,6 +11,13 @@ This will allow buyers to verify the origin of the metal they have acquired, ins
 
 Our ultimate goal is making gold and other precious metals more accessible to all investors – large & small – through our crytpocurrency, INX, obtaining the best possible price both for our clients and for our community, with emphasis being placed on the transparency and safety of our transactions.
 
+
+Market and Industry
+===================
+Precious metals are a unique asset: they have an emotional, cultural and financial value. The global demand for gold investment worldwide has experienced an 18% annual growth. Since 1970, the volume of gold produced each year has undergone a threefold increase,whereas the amount of gold purchased annually rose fourfold and markets have flourished all around the world.
+
+
+
 RazielCore Algorithm
 ====================
 
