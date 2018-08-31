@@ -14,7 +14,7 @@ Our ultimate goal is making gold and other precious metals more accessible to al
 RazielCore Algorithm
 ====================
 
-RazielCore es un algoritmo propietario solo usado con la criptomoneda INX. Utiliza complejas funciones resumen (hash) que mantienen los datos en la cadena de bloques (blockchain) rápidos y seguros.
+RazielCore is a proprietary algorithm built by InnovaMinex developers for INX Blockchain. Having such a complex yey energy effecient algorithm keeps INX Open Ledger safe.
 <br> <br>
 http://www.innovaminex.com
 <br>
