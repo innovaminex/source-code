@@ -64,7 +64,7 @@ Mac OS X
 
 
 Build configuration options
-============================
+===========================
 
 UPNnP port forwarding
 ---------------------
