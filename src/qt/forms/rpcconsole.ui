@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>innovaminex - Debug window</string>
+   <string>INX - Debug window</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
@@ -36,7 +36,7 @@
           </font>
          </property>
          <property name="text">
-          <string>innovaminex Core</string>
+          <string>InnovaMinex Core</string>
          </property>
         </widget>
        </item>
