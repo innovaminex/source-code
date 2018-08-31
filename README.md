@@ -1,3 +1,4 @@
+![alt text](https://github.com/innovaminex/source-code/blob/master/assets/logo.png)
 ¿Qué es InnovaMinex ?
 =====================
 Es un modelo de negocio innovador que utiliza la tecnología blockchain para garantizar la trazabilidad del metal precioso. Aplicando un conjunto de procedimientos, es posible certificar el proceso completo desde su procedencia en la explotación minera, pasando por la refinería, hasta su posterior comercialización al cliente final. Esta comercialización se lleva a cabo a través de nuestros e-commerce, tiendas asociadas o nuestros propios cajeros automáticos.
