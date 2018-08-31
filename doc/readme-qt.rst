@@ -1,5 +1,5 @@
-innovaminex-qt: Qt5 GUI for innovaminex
-===============================
+Qt5 GUI for InnovaMinex
+=======================
 
 Build instructions
 ===================
