@@ -100,7 +100,7 @@ public:
         genesis.nNonce   = 2515652;
 
         hashGenesisBlock = genesis.GetHash();
-//        MineGenesis(genesis); // mine the genesis block only, disable after solved
+//      MineGenesis(genesis); // mine the genesis block only, disable after solved
         assert(hashGenesisBlock == uint256("0x000000223105f4bec915244592319dbe3e36b0c7ec6e1729ebdb8ac248ec070b"));
         assert(genesis.hashMerkleRoot == uint256("0xb8a05de531407626736cbec7777060c198216924cb41fd810f28a0ad62e75a01"));
 
@@ -119,6 +119,14 @@ public:
         vSeeds.push_back(CDNSSeedData("node12.hardline.ltd", "node12.hardline.ltd"));
         vSeeds.push_back(CDNSSeedData("node13.hardline.ltd", "node13.hardline.ltd"));
         vSeeds.push_back(CDNSSeedData("node14.hardline.ltd", "node14.hardline.ltd"));
+	vSeeds.push_back(CDNSSeedData("tn0.innovaminex.com", "tn0.innovaminex.com"));
+	vSeeds.push_back(CDNSSeedData("tn1.innovaminex.com", "tn1.innovaminex.com"));
+	vSeeds.push_back(CDNSSeedData("tn2.innovaminex.com", "tn2.innovaminex.com"));
+	vSeeds.push_back(CDNSSeedData("tn3.innovaminex.com", "tn3.innovaminex.com"));
+	vSeeds.push_back(CDNSSeedData("tn4.innovaminex.com", "tn4.innovaminex.com"));
+	vSeeds.push_back(CDNSSeedData("tn5.innovaminex.com", "tn5.innovaminex.com"));
+	vSeeds.push_back(CDNSSeedData("tn6.innovaminex.com", "tn6.innovaminex.com"));
+	vSeeds.push_back(CDNSSeedData("tn7.innovaminex.com", "tn7.innovaminex.com"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,102);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,28);
