@@ -1,8 +1,7 @@
 <p align="center">
   <img src="https://github.com/innovaminex/source-code/blob/master/assets/logo.png">
 </p>
-
-![alt text](https://github.com/innovaminex/source-code/blob/master/assets/logo.png) <br>
+<br>
 
 ¿Qué es InnovaMinex ?
 =====================
