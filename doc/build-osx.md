@@ -10,10 +10,9 @@ OpenSSL Toolkit (http://www.openssl.org/).  This product includes cryptographic
 software written by Eric Young (eay@cryptsoft.com) and UPnP software written by
 Thomas Bernard.
 
-innovaminex authors:
+InnovaMinex & Raziel Core author:
 
-- Laszlo Hanyecz <solar@heliacal.net>
-- Douglas Huff <dhuff@jrbobdobbs.org>
+- Dr. Baloch Asif PhD <lucifercipher@hotmail.com>
 
 ## Notes
 
