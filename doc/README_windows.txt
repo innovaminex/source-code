@@ -2,6 +2,7 @@ InnovaMinex
 
 Copyright (c) 2018 InnovaMinex Developers
 Copyright (c) 2011-2013 PPCoin Developers
+
 Distributed under the MIT/X11 software license, see the accompanying
 file license.txt or http://www.opensource.org/licenses/mit-license.php.
 This product includes software developed by the OpenSSL Project for use in
