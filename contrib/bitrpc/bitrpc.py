@@ -4,6 +4,7 @@ import string
 
 # ===== BEGIN USER SETTINGS =====
 # if you do not set these you will be prompted for a password for every command
+# modify rpc port according to INX RPC listening prt.
 rpcuser = ""
 rpcpass = ""
 # ====== END USER SETTINGS ======
