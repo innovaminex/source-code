@@ -12,7 +12,7 @@ Thomas Bernard.
 
 InnovaMinex & Raziel Core author:
 
-- Dr. Baloch Asif PhD <lucifercipher@hotmail.com>
+- Dr. Baloch Asif PhD <lucifercipher[at]hotmail.com>
 
 ## Notes
 
