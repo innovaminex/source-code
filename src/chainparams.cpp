@@ -47,16 +47,12 @@ void MineGenesis(CBlock genesis){
 }
 
 //
-// Main network
+// INX Main Network Paramaters 
 //
 
-// Convert the pnSeeds6 array into usable address objects.
 static void convertSeed6(std::vector<CAddress> &vSeedsOut, const SeedSpec6 *data, unsigned int count)
 {
-    // It'll only connect to one or two seed nodes because once it connects,
-    // it'll get a pile of addresses with newer timestamps.
-    // Seed nodes are given a random 'last seen time' of between one and two
-    // weeks ago.
+
     const int64_t nOneWeek = 7*24*60*60;
     for (unsigned int i = 0; i < count; i++)
     {
@@ -71,9 +67,7 @@ static void convertSeed6(std::vector<CAddress> &vSeedsOut, const SeedSpec6 *data
 class CMainParams : public CChainParams {
 public:
     CMainParams() {
-        // The message start string is designed to be unlikely to occur in normal data.
-        // The characters are rarely used upper ASCII, not valid as UTF-8, and produce
-        // a large 4-byte int at any alignment.
+
         pchMessageStart[0] = 0xe1;
         pchMessageStart[1] = 0xa2;
         pchMessageStart[2] = 0xa3;
