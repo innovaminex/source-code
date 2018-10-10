@@ -37,7 +37,7 @@ namespace Checkpoints
         ( 4200,    uint256("0x7377e303e6fe18d93984b851205e9468495e4af122994a73c17b62ba548d5682") )
         ( 8300,    uint256("0x267f173084672a65d41d77ec16bd51aebffeb47110927a9f0309f8b6f4d9b267") ) // stable check
         ( 14100,   uint256("0x5a1dd71778fc7d88d2cfe379b2fcdcd3f81b2570c1eeaa006c76e819d8ab2f26") ) // ... goes on
-        ( 103370,  uint256("0x4a8caf1a5f3e00ad37d413dcb80ac91fd78f501a2529e380b507fdd1c8c87d05") ) // last good checkpoint
+        ( 108264,  uint256("0x2439de9c571ddd6a375b67c504f11697043434f674dff5b22fca335cc6d51a9d") ) // last good checkpoint
         ;
 
     // TestNet checkpoints
