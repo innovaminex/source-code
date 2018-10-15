@@ -26,7 +26,7 @@ Precious metals are a unique asset: they have an emotional, cultural and financi
 RazielCore Algorithm
 ====================
 
-RazielCore is a proprietary algorithm built by InnovaMinex developers for INX Blockchain. Having such a complex yet energy effecient algorithm keeps not only INX Open Ledger safe and secure but makes InnovaMinex blockchain unique.
+RazielCore is a proprietary algorithm built by InnovaMinex developers for INX Blockchain. Having such a complex yet energy effecient algorithm keeps not only INX Open Ledger safe and secure but makes InnovaMinex blockchain unique. The algo itself is designed to be light weight yet extremely complex as it is a recursive algorithm compromising of 5 unique block hashes. 
 <br> <br>
 http://www.innovaminex.com
 <br>
