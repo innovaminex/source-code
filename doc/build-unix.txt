@@ -1,3 +1,5 @@
+This howto is for experienced compilers. Generic method of compilation applies. Make sure that your platform has necessary dependencies and files prepared before you attempt to compile a wallet on your platform. Note that SSL development libs may differ in the newer versions of Ubuntu and Debian distos. Install appropriate boost and ssl libs first. 
+
 Copyright (c) 2018 InnovaMinex
 Copyright (c) 2009-2012 Bitcoin Developers
 
@@ -20,8 +22,7 @@ chmod +x build_detect_platform
 make clean && make libleveldb.a libmemenv.a
 make -f makefile.unix            # Headless innovaminex
 
-See readme-qt.rst for instructions on building innovaminex QT,
-the graphical innovaminex.
+See readme-qt.rst for instructions on building innovaminex QT, the graphical innovaminex.
 
 Dependencies
 ------------
