@@ -13,7 +13,7 @@
 #include "uint256.h"
 
 
-static const int nCheckpointSpan = 500; // we want moar
+static const int nCheckpointSpan = 700; // we want moar
 
 namespace Checkpoints
 {
@@ -38,7 +38,7 @@ namespace Checkpoints
         ( 8300,    uint256("0x267f173084672a65d41d77ec16bd51aebffeb47110927a9f0309f8b6f4d9b267") ) // stable check
         ( 14100,   uint256("0x5a1dd71778fc7d88d2cfe379b2fcdcd3f81b2570c1eeaa006c76e819d8ab2f26") ) // ... goes on
         ( 111214,  uint256("0x13884f1715988b06b744b9e8dbb57ea1c4a6ef04a8cb2d0e776c1815c9ce844d") ) // ... goes on
-        ( 117876,  uint256("0x5e01c8fec6a722eff05a33b1d9f3825dbbc7a5a8e4972a673bee8a89231c74cd") ) // ... add new block height
+        ( 119026,  uint256("0x7ffe11a3ce5f39cfe01106e30d88721dcb97dce921493a935b74ce975c9a4674") ) // ... add new block height
         ;
 
     // TestNet checkpoints
