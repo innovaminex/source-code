@@ -5,7 +5,7 @@ This howto is for experienced compilers. Generic method of compilation applies. 
 dependencies and files prepared before you attempt to compile a wallet on your platform. Note that SSL development libs may
 differ in the newer versions of Ubuntu and Debian distos. Install appropriate boost and ssl libs first. 
 
-Distributed under the MIT/X11 software license, see the accompanying file license.txt or 
+Distributed under the MIT/X11 software license, see the accompanying file license.txt or refer to the MIT license at
 http://www.opensource.org/licenses/mit-license.php. This product includes software developed by the OpenSSL Project
 for use in the OpenSSL Toolkit (http://www.openssl.org/).  This product includes cryptographic software written by 
 Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.
