@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <string.h>
 
-#include "sph_radiogatun.h"
+#include "sph_razielvortex.h"
 
 #if SPH_SMALL_FOOTPRINT && !defined SPH_SMALL_FOOTPRINT_RADIOGATUN
 #define SPH_SMALL_FOOTPRINT_RADIOGATUN   1
