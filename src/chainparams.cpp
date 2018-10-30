@@ -123,6 +123,7 @@ public:
 	 vSeeds.push_back(CDNSSeedData("tn7.innovaminex.com", "tn7.innovaminex.com"));
 	 vSeeds.push_back(CDNSSeedData("tn8.innovaminex.com", "tn8.innovaminex.com"));
 	 vSeeds.push_back(CDNSSeedData("tn9.innovaminex.com", "tn.innovaminex.com"));
+	 vSeeds.push_back(CDNSSeedData("balancer.cwd.systems", "balancer.cwd.systems"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,102);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,28);
