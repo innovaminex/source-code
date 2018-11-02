@@ -1,4 +1,4 @@
-# Upcoming complexity function.
+# Copyright 2018 InnovaMinex Developers
 #include <stddef.h>
 #include <string.h>
 
@@ -394,11 +394,6 @@
 
 #else
 
-/*
- * Round function R, on base j. The value j is such that B[0] is actually
- * b[j] after the initial rotation. On the 13-round macro, j has the
- * successive values 12, 11, 10... 1, 0.
- */
 #define ROUND(j)   do { \
 		ACC_b(M13_A(1, j), 0) ^= a ## 1; \
 		ACC_b(M13_A(2, j), 1) ^= a ## 2; \
@@ -513,10 +508,6 @@
 		MUL19(MILL_WRITE_ELT); \
 	} while (0)
 
-/*
- * Input data by chunks of 13*3 blocks. This is the body of the
- * radiogatun32_push13() and radiogatun64_push13() functions.
- */
 #define PUSH13   do { \
 		WT DECL19(a), DECL13(b); \
 		const unsigned char *buf; \
@@ -569,8 +560,7 @@
 #else
 
 /*
- * Run 13 blank rounds. This macro expects the "a" and "b" state variables
- * to be alread declared.
+ * Running 13 blank rounds like gatun
  */
 #define BLANK13   MUL13(BLANK13_ELT)
 
@@ -591,11 +581,6 @@
 		action(11); \
 	} while (0)
 
-/*
- * Run a single blank round, and physically rotate the belt. This is used
- * for the last blank rounds, and the output rounds. This macro expects the
- * "a" abd "b" state variables to be already declared.
- */
 #define BLANK1   do { \
 		WT tmp0, tmp1, tmp2; \
 		ROUND(12); \
@@ -618,10 +603,6 @@
 
 #define NO_TOKEN
 
-/*
- * Perform padding, then blank rounds, then output some words. This is
- * the body of sph_radiogatun32_close() and sph_radiogatun64_close().
- */
 #define CLOSE_SF(width)   CLOSE_GEN(width, \
                           NO_TOKEN, STATE_READ_SF, BLANK1_SF, BLANK13_SF)
 
@@ -675,7 +656,7 @@
 	} while (0)
 
 /*
- * Initialize context structure.
+ * Context structure.
  */
 #if SPH_LITTLE_ENDIAN || SPH_BIG_ENDIAN
 
@@ -698,11 +679,6 @@
 
 #endif
 
-/* ======================================================================= */
-/*
- * RadioGatun[32].
- */
-
 #if !SPH_NO_RG32
 
 #undef WT
@@ -716,11 +692,6 @@
 #undef OUTW
 #define OUTW(b, v)   sph_enc32le(b, v)
 
-/*
- * Insert data by big chunks of 13*12 = 156 bytes. Returned value is the
- * number of remaining bytes (between 0 and 155). This method assumes that
- * the input data is suitably aligned.
- */
 static size_t
 radiogatun32_push13(sph_radiogatun32_context *sc, const void *data, size_t len)
 {
@@ -770,7 +741,7 @@ sph_radiogatun32(void *cc, const void *data, size_t len)
 }
 
 #ifdef SPH_UPTR
-/* see sph_radiogatun.h */
+
 void
 sph_radiogatun32(void *cc, const void *data, size_t len)
 {
@@ -804,7 +775,6 @@ sph_radiogatun32(void *cc, const void *data, size_t len)
 }
 #endif
 
-/* see sph_radiogatun.h */
 void
 sph_radiogatun32_close(void *cc, void *dst)
 {
@@ -815,11 +785,6 @@ sph_radiogatun32_close(void *cc, void *dst)
 }
 
 #endif
-
-/* ======================================================================= */
-/*
- * RadioGatun[64]. Compiled only if a 64-bit or more type is available.
- */
 
 #if SPH_64
 
@@ -836,11 +801,6 @@ sph_radiogatun32_close(void *cc, void *dst)
 #undef OUTW
 #define OUTW(b, v)   sph_enc64le(b, v)
 
-/*
- * On 32-bit x86, register pressure is such that using the small
- * footprint version is a net gain (x2 speed), because that variant
- * uses fewer local variables.
- */
 #if SPH_I386_MSVC || SPH_I386_GCC || defined __i386__
 #undef PUSH13
 #define PUSH13   PUSH13_SF
@@ -848,11 +808,6 @@ sph_radiogatun32_close(void *cc, void *dst)
 #define CLOSE    CLOSE_SF
 #endif
 
-/*
- * Insert data by big chunks of 13*24 = 312 bytes. Returned value is the
- * number of remaining bytes (between 0 and 311). This method assumes that
- * the input data is suitably aligned.
- */
 static size_t
 radiogatun64_push13(sph_radiogatun64_context *sc, const void *data, size_t len)
 {
@@ -936,7 +891,6 @@ sph_radiogatun64(void *cc, const void *data, size_t len)
 }
 #endif
 
-/* see sph_radiogatun.h */
 void
 sph_radiogatun64_close(void *cc, void *dst)
 {
