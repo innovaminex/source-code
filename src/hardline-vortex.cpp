@@ -1,4 +1,9 @@
+#
 # Copyright 2018 InnovaMinex Developers
+# SPH defs to be uploaded before final push of enhancements. 
+# Need to tweak some chain params after adding the enhancements.
+# 
+
 #include <stddef.h>
 #include <string.h>
 
