@@ -44,9 +44,7 @@
  */
 
 #include "sph_types.h"
-#ifdef __cplusplus
-extern "C"{
-#endif
+
 #if AES_BIG_ENDIAN
 
 #define AESx(x)   ( ((SPH_C32(x) >> 24) & SPH_C32(0x000000FF)) \
@@ -386,7 +384,3 @@ static const sph_u32 AES3[256] = {
 	AESx(0x82C34141), AESx(0x29B09999), AESx(0x5A772D2D), AESx(0x1E110F0F),
 	AESx(0x7BCBB0B0), AESx(0xA8FC5454), AESx(0x6DD6BBBB), AESx(0x2C3A1616)
 };
-
-#ifdef __cplusplus
-}
-#endif

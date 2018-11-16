@@ -38,10 +38,6 @@
 #include <stddef.h>
 #include "sph_types.h"
 
-#ifdef __cplusplus
-extern "C"{
-#endif
-
 /**
  * Output size (in bits) for Hamsi-224.
  */
@@ -311,11 +307,5 @@ void sph_hamsi512_close(void *cc, void *dst);
  */
 void sph_hamsi512_addbits_and_close(
 	void *cc, unsigned ub, unsigned n, void *dst);
-
-
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif

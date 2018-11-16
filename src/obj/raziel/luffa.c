@@ -36,10 +36,6 @@
 
 #include "sph_luffa.h"
 
-#ifdef __cplusplus
-extern "C"{
-#endif
-
 #if SPH_64_TRUE && !defined SPH_LUFFA_PARALLEL
 #define SPH_LUFFA_PARALLEL   1
 #endif
@@ -1420,7 +1416,3 @@ sph_luffa512_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst)
 	luffa5_close(cc, ub, n, dst);
 	sph_luffa512_init(cc);
 }
-
-#ifdef __cplusplus
-}
-#endif
