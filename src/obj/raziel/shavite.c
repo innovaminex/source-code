@@ -35,6 +35,10 @@
 
 #include "sph_shavite.h"
 
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 #if SPH_SMALL_FOOTPRINT && !defined SPH_SMALL_FOOTPRINT_SHAVITE
 #define SPH_SMALL_FOOTPRINT_SHAVITE   1
 #endif
@@ -1754,3 +1758,7 @@ sph_shavite512_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst)
 	shavite_big_close(cc, ub, n, dst, 16);
 	shavite_big_init(cc, IV512);
 }
+
+#ifdef __cplusplus
+}
+#endif

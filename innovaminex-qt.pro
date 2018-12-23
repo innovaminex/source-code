@@ -324,9 +324,6 @@ HEADERS += src/qt/bitcoingui.h \
     src/threadsafety.h \
     src/tinyformat.h \
     src/obj/raziel/sph_skein.h \
-    src/obj/raziel/sph_keccak.h \
-    src/obj/raziel/sph_gost.h \
-    src/obj/raziel/sph_inx.h \
     src/obj/raziel/sph_types.h \
     src/obj/raziel/sph_cubehash.h \
     src/obj/raziel/sph_fugue.h

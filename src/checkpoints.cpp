@@ -1,5 +1,4 @@
 // Copyright (c) 2018 InnovaMinex www.innovaminex.com
-// Copyright (c) 2018 https://cwd.systems
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -39,7 +38,7 @@ namespace Checkpoints
         ( 8300,    uint256("0x267f173084672a65d41d77ec16bd51aebffeb47110927a9f0309f8b6f4d9b267") ) // stable check
         ( 14100,   uint256("0x5a1dd71778fc7d88d2cfe379b2fcdcd3f81b2570c1eeaa006c76e819d8ab2f26") ) // ... goes on
         ( 111214,  uint256("0x13884f1715988b06b744b9e8dbb57ea1c4a6ef04a8cb2d0e776c1815c9ce844d") ) // ... goes on
-        ( 131330,  uint256("0xaa8f8ed9277faf188db74dcd8e26557147e95d3eaa0998eb233462bd88565d29") ) // ... add new block height
+        ( 119029,  uint256("0xb25e0364cc0df6315047de29665c41a63ca354b5363e183ba14275bf772711d7") ) // ... add new block height
         ;
 
     // TestNet checkpoints

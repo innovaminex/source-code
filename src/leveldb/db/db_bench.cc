@@ -5,10 +5,11 @@
 #include <sys/types.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "db/db_impl.h"
+#include "db/version_set.h"
 #include "leveldb/cache.h"
 #include "leveldb/db.h"
 #include "leveldb/env.h"
-#include "leveldb/filter_policy.h"
 #include "leveldb/write_batch.h"
 #include "port/port.h"
 #include "util/crc32c.h"
@@ -111,12 +112,12 @@ static bool FLAGS_use_existing_db = false;
 static bool FLAGS_reuse_logs = false;
 
 // Use the db with the following name.
-static const char* FLAGS_db = nullptr;
+static const char* FLAGS_db = NULL;
 
 namespace leveldb {
 
 namespace {
-leveldb::Env* g_env = nullptr;
+leveldb::Env* g_env = NULL;
 
 // Helper for quickly generating random data.
 class RandomGenerator {
@@ -282,8 +283,8 @@ class Stats {
 // State shared by all concurrent executions of the same benchmark.
 struct SharedState {
   port::Mutex mu;
-  port::CondVar cv GUARDED_BY(mu);
-  int total GUARDED_BY(mu);
+  port::CondVar cv;
+  int total;
 
   // Each thread goes through the following states:
   //    (1) initializing
@@ -291,12 +292,11 @@ struct SharedState {
   //    (3) running
   //    (4) done
 
-  int num_initialized GUARDED_BY(mu);
-  int num_done GUARDED_BY(mu);
-  bool start GUARDED_BY(mu);
+  int num_initialized;
+  int num_done;
+  bool start;
 
-  SharedState(int total)
-      : cv(&mu), total(total), num_initialized(0), num_done(0), start(false) { }
+  SharedState() : cv(&mu) { }
 };
 
 // Per-thread state for concurrent executions of the same benchmark.
@@ -370,18 +370,18 @@ class Benchmark {
             kMajorVersion, kMinorVersion);
 
 #if defined(__linux)
-    time_t now = time(nullptr);
+    time_t now = time(NULL);
     fprintf(stderr, "Date:       %s", ctime(&now));  // ctime() adds newline
 
     FILE* cpuinfo = fopen("/proc/cpuinfo", "r");
-    if (cpuinfo != nullptr) {
+    if (cpuinfo != NULL) {
       char line[1000];
       int num_cpus = 0;
       std::string cpu_type;
       std::string cache_size;
-      while (fgets(line, sizeof(line), cpuinfo) != nullptr) {
+      while (fgets(line, sizeof(line), cpuinfo) != NULL) {
         const char* sep = strchr(line, ':');
-        if (sep == nullptr) {
+        if (sep == NULL) {
           continue;
         }
         Slice key = TrimSpace(Slice(line, sep - 1 - line));
@@ -402,11 +402,11 @@ class Benchmark {
 
  public:
   Benchmark()
-  : cache_(FLAGS_cache_size >= 0 ? NewLRUCache(FLAGS_cache_size) : nullptr),
+  : cache_(FLAGS_cache_size >= 0 ? NewLRUCache(FLAGS_cache_size) : NULL),
     filter_policy_(FLAGS_bloom_bits >= 0
                    ? NewBloomFilterPolicy(FLAGS_bloom_bits)
-                   : nullptr),
-    db_(nullptr),
+                   : NULL),
+    db_(NULL),
     num_(FLAGS_num),
     value_size_(FLAGS_value_size),
     entries_per_batch_(1),
@@ -435,12 +435,12 @@ class Benchmark {
     Open();
 
     const char* benchmarks = FLAGS_benchmarks;
-    while (benchmarks != nullptr) {
+    while (benchmarks != NULL) {
       const char* sep = strchr(benchmarks, ',');
       Slice name;
-      if (sep == nullptr) {
+      if (sep == NULL) {
         name = benchmarks;
-        benchmarks = nullptr;
+        benchmarks = NULL;
       } else {
         name = Slice(benchmarks, sep - benchmarks);
         benchmarks = sep + 1;
@@ -453,7 +453,7 @@ class Benchmark {
       entries_per_batch_ = 1;
       write_options_ = WriteOptions();
 
-      void (Benchmark::*method)(ThreadState*) = nullptr;
+      void (Benchmark::*method)(ThreadState*) = NULL;
       bool fresh_db = false;
       int num_threads = FLAGS_threads;
 
@@ -532,16 +532,16 @@ class Benchmark {
         if (FLAGS_use_existing_db) {
           fprintf(stdout, "%-12s : skipped (--use_existing_db is true)\n",
                   name.ToString().c_str());
-          method = nullptr;
+          method = NULL;
         } else {
           delete db_;
-          db_ = nullptr;
+          db_ = NULL;
           DestroyDB(FLAGS_db, Options());
           Open();
         }
       }
 
-      if (method != nullptr) {
+      if (method != NULL) {
         RunBenchmark(num_threads, name, method);
       }
     }
@@ -585,7 +585,11 @@ class Benchmark {
 
   void RunBenchmark(int n, Slice name,
                     void (Benchmark::*method)(ThreadState*)) {
-    SharedState shared(n);
+    SharedState shared;
+    shared.total = n;
+    shared.num_initialized = 0;
+    shared.num_done = 0;
+    shared.start = false;
 
     ThreadArg* arg = new ThreadArg[n];
     for (int i = 0; i < n; i++) {
@@ -643,7 +647,7 @@ class Benchmark {
     int dummy;
     port::AtomicPointer ap(&dummy);
     int count = 0;
-    void *ptr = nullptr;
+    void *ptr = NULL;
     thread->stats.AddMessage("(each op is 1000 loads)");
     while (count < 100000) {
       for (int i = 0; i < 1000; i++) {
@@ -652,7 +656,7 @@ class Benchmark {
       count++;
       thread->stats.FinishedSingleOp();
     }
-    if (ptr == nullptr) exit(1); // Disable unused variable warning.
+    if (ptr == NULL) exit(1); // Disable unused variable warning.
   }
 
   void SnappyCompress(ThreadState* thread) {
@@ -703,7 +707,7 @@ class Benchmark {
   }
 
   void Open() {
-    assert(db_ == nullptr);
+    assert(db_ == NULL);
     Options options;
     options.env = g_env;
     options.create_if_missing = !FLAGS_use_existing_db;
@@ -914,7 +918,7 @@ class Benchmark {
   }
 
   void Compact(ThreadState* thread) {
-    db_->CompactRange(nullptr, nullptr);
+    db_->CompactRange(NULL, NULL);
   }
 
   void PrintStats(const char* key) {
@@ -1004,7 +1008,7 @@ int main(int argc, char** argv) {
   leveldb::g_env = leveldb::Env::Default();
 
   // Choose a location for the test database if none given with --db=<path>
-  if (FLAGS_db == nullptr) {
+  if (FLAGS_db == NULL) {
       leveldb::g_env->GetTestDirectory(&default_db_path);
       default_db_path += "/dbbench";
       FLAGS_db = default_db_path.c_str();

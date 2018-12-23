@@ -1,39 +1,11 @@
-/* $Id: fugue.c 216 2010-06-08 09:46:57Z tp $ */
-/*
- * Fugue implementation.
- *
- * ==========================(LICENSE BEGIN)============================
- *
- * Copyright (c) 2007-2010  Projet RNRT SAPHIR
- * 
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- * 
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
- * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- * ===========================(LICENSE END)=============================
- *
- * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
- */
-
 #include <stddef.h>
 #include <string.h>
 
 #include "sph_fugue.h"
+
+#ifdef __cplusplus
+extern "C"{
+#endif
 
 #ifdef _MSC_VER
 #pragma warning (disable: 4146)
@@ -535,41 +507,7 @@ static const sph_u32 mixtab3[] = {
 			| ((c0 ^ (r1 >> 8)) & SPH_C32(0x00FF0000)) \
 			| ((c1 ^ (r2 >> 8)) & SPH_C32(0x0000FF00)) \
 			| ((c2 ^ (r3 >> 8)) & SPH_C32(0x000000FF)); \
-		/*
-		 * The code below can replace the four expressions
-		 * above. It yields shorter and faster code on
-		 * architectures which have innate abilities at
-		 * word rotations (e.g. x86 or non-thumb ARM) but
-		 * makes things worse on other systems (e.g. Mips).
-		 *
-		x0 = ((c0 ^ r0) & SPH_C32(0xFF000000)) \
-			| ((c1 ^ r1) & SPH_C32(0x00FF0000)) \
-			| ((c2 ^ r2) & SPH_C32(0x0000FF00)) \
-			| ((c3 ^ r3) & SPH_C32(0x000000FF)); \
-		r0 = SPH_ROTL32(r0, 8); \
-		r1 = SPH_ROTL32(r1, 8); \
-		r2 = SPH_ROTL32(r2, 8); \
-		r3 = SPH_ROTL32(r3, 8); \
-		x1 = ((c1 ^ r0) & SPH_C32(0xFF000000)) \
-			| ((c2 ^ r1) & SPH_C32(0x00FF0000)) \
-			| ((c3 ^ r2) & SPH_C32(0x0000FF00)) \
-			| ((c0 ^ r3) & SPH_C32(0x000000FF)); \
-		r0 = SPH_ROTL32(r0, 8); \
-		r1 = SPH_ROTL32(r1, 8); \
-		r2 = SPH_ROTL32(r2, 8); \
-		r3 = SPH_ROTL32(r3, 8); \
-		x2 = ((c2 ^ r0) & SPH_C32(0xFF000000)) \
-			| ((c3 ^ r1) & SPH_C32(0x00FF0000)) \
-			| ((c0 ^ r2) & SPH_C32(0x0000FF00)) \
-			| ((c1 ^ r3) & SPH_C32(0x000000FF)); \
-		r0 = SPH_ROTL32(r0, 8); \
-		r1 = SPH_ROTL32(r1, 8); \
-		r2 = SPH_ROTL32(r2, 8); \
-		r3 = SPH_ROTL32(r3, 8); \
-		x3 = ((c3 ^ r0) & SPH_C32(0xFF000000)) \
-			| ((c0 ^ r1) & SPH_C32(0x00FF0000)) \
-			| ((c1 ^ r2) & SPH_C32(0x0000FF00)) \
-			| ((c2 ^ r3) & SPH_C32(0x000000FF)); */ \
+		/* */ \
 	} while (0)
 
 #if SPH_FUGUE_NOCOPY
@@ -1170,114 +1108,101 @@ fugue4_close(sph_fugue_context *sc, unsigned ub, unsigned n, void *dst)
 	sph_fugue512_init(sc);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue224_init(void *cc)
 {
 	fugue_init(cc, 23, IV224, 7);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue224(void *cc, const void *data, size_t len)
 {
 	fugue2_core(cc, data, len);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue224_close(void *cc, void *dst)
 {
 	fugue2_close(cc, 0, 0, dst, 7);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue224_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst)
 {
 	fugue2_close(cc, ub, n, dst, 7);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue256_init(void *cc)
 {
 	fugue_init(cc, 22, IV256, 8);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue256(void *cc, const void *data, size_t len)
 {
 	fugue2_core(cc, data, len);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue256_close(void *cc, void *dst)
 {
 	fugue2_close(cc, 0, 0, dst, 8);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue256_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst)
 {
 	fugue2_close(cc, ub, n, dst, 8);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue384_init(void *cc)
 {
 	fugue_init(cc, 24, IV384, 12);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue384(void *cc, const void *data, size_t len)
 {
 	fugue3_core(cc, data, len);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue384_close(void *cc, void *dst)
 {
 	fugue3_close(cc, 0, 0, dst);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue384_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst)
 {
 	fugue3_close(cc, ub, n, dst);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue512_init(void *cc)
 {
 	fugue_init(cc, 20, IV512, 16);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue512(void *cc, const void *data, size_t len)
 {
 	fugue4_core(cc, data, len);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue512_close(void *cc, void *dst)
 {
 	fugue4_close(cc, 0, 0, dst);
 }
 
-/* see sph_fugue.h */
 void
 sph_fugue512_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst)
 {
 	fugue4_close(cc, ub, n, dst);
 }
+#ifdef __cplusplus
+}
+#endif

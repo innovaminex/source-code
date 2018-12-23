@@ -11,7 +11,7 @@ This will allow buyers to verify the origin of the metal they have acquired, ins
 
 Our ultimate goal is making gold and other precious metals more accessible to all investors – large & small – through our crytpocurrency, INX, obtaining the best possible price both for our clients and for our community, with emphasis being placed on the transparency and safety of our transactions.
 
-* INX Blockchain is theft-proof and has a node network for immediate transactions.
+* INX Blockchain is theft-proof and has a nod network for immediate transactions.
 * INX has its Thunder Network of nodes which work together in order to obtain swift transactions.
 * INX is free of charges on its operations.
 * Designed to get easily integrated into various applications.

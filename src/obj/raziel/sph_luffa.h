@@ -36,6 +36,10 @@
 #ifndef SPH_LUFFA_H__
 #define SPH_LUFFA_H__
 
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 #include <stddef.h>
 #include "sph_types.h"
 
@@ -284,5 +288,9 @@ void sph_luffa512_close(void *cc, void *dst);
  */
 void sph_luffa512_addbits_and_close(
 	void *cc, unsigned ub, unsigned n, void *dst);
-
+	
+#ifdef __cplusplus
+}
+#endif
+	
 #endif

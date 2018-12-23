@@ -14,6 +14,7 @@
 namespace leveldb {
 
 class InternalKeyComparator;
+class Mutex;
 class MemTableIterator;
 
 class MemTable {

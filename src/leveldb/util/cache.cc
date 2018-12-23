@@ -8,7 +8,6 @@
 
 #include "leveldb/cache.h"
 #include "port/port.h"
-#include "port/thread_annotations.h"
 #include "util/hash.h"
 #include "util/mutexlock.h"
 
@@ -54,11 +53,13 @@ struct LRUHandle {
   char key_data[1];   // Beginning of key
 
   Slice key() const {
-    // next_ is only equal to this if the LRU handle is the list head of an
-    // empty list. List heads never have meaningful keys.
-    assert(next != this);
-
-    return Slice(key_data, key_length);
+    // For cheaper lookups, we allow a temporary Handle object
+    // to store a pointer to a key in "value".
+    if (next == this) {
+      return *(reinterpret_cast<Slice*>(value));
+    } else {
+      return Slice(key_data, key_length);
+    }
   }
 };
 
@@ -69,7 +70,7 @@ struct LRUHandle {
 // 4.4.3's builtin hashtable.
 class HandleTable {
  public:
-  HandleTable() : length_(0), elems_(0), list_(nullptr) { Resize(); }
+  HandleTable() : length_(0), elems_(0), list_(NULL) { Resize(); }
   ~HandleTable() { delete[] list_; }
 
   LRUHandle* Lookup(const Slice& key, uint32_t hash) {
@@ -79,9 +80,9 @@ class HandleTable {
   LRUHandle* Insert(LRUHandle* h) {
     LRUHandle** ptr = FindPointer(h->key(), h->hash);
     LRUHandle* old = *ptr;
-    h->next_hash = (old == nullptr ? nullptr : old->next_hash);
+    h->next_hash = (old == NULL ? NULL : old->next_hash);
     *ptr = h;
-    if (old == nullptr) {
+    if (old == NULL) {
       ++elems_;
       if (elems_ > length_) {
         // Since each cache entry is fairly large, we aim for a small
@@ -95,7 +96,7 @@ class HandleTable {
   LRUHandle* Remove(const Slice& key, uint32_t hash) {
     LRUHandle** ptr = FindPointer(key, hash);
     LRUHandle* result = *ptr;
-    if (result != nullptr) {
+    if (result != NULL) {
       *ptr = result->next_hash;
       --elems_;
     }
@@ -114,7 +115,7 @@ class HandleTable {
   // pointer to the trailing slot in the corresponding linked list.
   LRUHandle** FindPointer(const Slice& key, uint32_t hash) {
     LRUHandle** ptr = &list_[hash & (length_ - 1)];
-    while (*ptr != nullptr &&
+    while (*ptr != NULL &&
            ((*ptr)->hash != hash || key != (*ptr)->key())) {
       ptr = &(*ptr)->next_hash;
     }
@@ -131,7 +132,7 @@ class HandleTable {
     uint32_t count = 0;
     for (uint32_t i = 0; i < length_; i++) {
       LRUHandle* h = list_[i];
-      while (h != nullptr) {
+      while (h != NULL) {
         LRUHandle* next = h->next_hash;
         uint32_t hash = h->hash;
         LRUHandle** ptr = &new_list[hash & (new_length - 1)];
@@ -175,25 +176,25 @@ class LRUCache {
   void LRU_Append(LRUHandle*list, LRUHandle* e);
   void Ref(LRUHandle* e);
   void Unref(LRUHandle* e);
-  bool FinishErase(LRUHandle* e) EXCLUSIVE_LOCKS_REQUIRED(mutex_);
+  bool FinishErase(LRUHandle* e);
 
   // Initialized before use.
   size_t capacity_;
 
   // mutex_ protects the following state.
   mutable port::Mutex mutex_;
-  size_t usage_ GUARDED_BY(mutex_);
+  size_t usage_;
 
   // Dummy head of LRU list.
   // lru.prev is newest entry, lru.next is oldest entry.
   // Entries have refs==1 and in_cache==true.
-  LRUHandle lru_ GUARDED_BY(mutex_);
+  LRUHandle lru_;
 
   // Dummy head of in-use list.
   // Entries are in use by clients, and have refs >= 2 and in_cache==true.
-  LRUHandle in_use_ GUARDED_BY(mutex_);
+  LRUHandle in_use_;
 
-  HandleTable table_ GUARDED_BY(mutex_);
+  HandleTable table_;
 };
 
 LRUCache::LRUCache()
@@ -228,12 +229,11 @@ void LRUCache::Ref(LRUHandle* e) {
 void LRUCache::Unref(LRUHandle* e) {
   assert(e->refs > 0);
   e->refs--;
-  if (e->refs == 0) {  // Deallocate.
+  if (e->refs == 0) { // Deallocate.
     assert(!e->in_cache);
     (*e->deleter)(e->key(), e->value);
     free(e);
-  } else if (e->in_cache && e->refs == 1) {
-    // No longer in use; move to lru_ list.
+  } else if (e->in_cache && e->refs == 1) {  // No longer in use; move to lru_ list.
     LRU_Remove(e);
     LRU_Append(&lru_, e);
   }
@@ -255,7 +255,7 @@ void LRUCache::LRU_Append(LRUHandle* list, LRUHandle* e) {
 Cache::Handle* LRUCache::Lookup(const Slice& key, uint32_t hash) {
   MutexLock l(&mutex_);
   LRUHandle* e = table_.Lookup(key, hash);
-  if (e != nullptr) {
+  if (e != NULL) {
     Ref(e);
   }
   return reinterpret_cast<Cache::Handle*>(e);
@@ -288,10 +288,8 @@ Cache::Handle* LRUCache::Insert(
     LRU_Append(&in_use_, e);
     usage_ += charge;
     FinishErase(table_.Insert(e));
-  } else {  // don't cache. (capacity_==0 is supported and turns off caching.)
-    // next is read by key() in an assert, so it must be initialized
-    e->next = nullptr;
-  }
+  } // else don't cache.  (Tests use capacity_==0 to turn off caching.)
+
   while (usage_ > capacity_ && lru_.next != &lru_) {
     LRUHandle* old = lru_.next;
     assert(old->refs == 1);
@@ -304,17 +302,17 @@ Cache::Handle* LRUCache::Insert(
   return reinterpret_cast<Cache::Handle*>(e);
 }
 
-// If e != nullptr, finish removing *e from the cache; it has already been
-// removed from the hash table.  Return whether e != nullptr.
+// If e != NULL, finish removing *e from the cache; it has already been removed
+// from the hash table.  Return whether e != NULL.  Requires mutex_ held.
 bool LRUCache::FinishErase(LRUHandle* e) {
-  if (e != nullptr) {
+  if (e != NULL) {
     assert(e->in_cache);
     LRU_Remove(e);
     e->in_cache = false;
     usage_ -= e->charge;
     Unref(e);
   }
-  return e != nullptr;
+  return e != NULL;
 }
 
 void LRUCache::Erase(const Slice& key, uint32_t hash) {

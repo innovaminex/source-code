@@ -1,7 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2018 InnovaMinex
-// Copyright (c) 2018 https://cwd.systems
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -124,7 +123,6 @@ public:
 	 vSeeds.push_back(CDNSSeedData("tn7.innovaminex.com", "tn7.innovaminex.com"));
 	 vSeeds.push_back(CDNSSeedData("tn8.innovaminex.com", "tn8.innovaminex.com"));
 	 vSeeds.push_back(CDNSSeedData("tn9.innovaminex.com", "tn.innovaminex.com"));
-	 vSeeds.push_back(CDNSSeedData("balancer.cwd.systems", "balancer.cwd.systems"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,102);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,28);
