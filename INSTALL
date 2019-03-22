@@ -1,7 +1,0 @@
-Building InnovaMinex Wallets & Daemons
-
-See doc/readme-qt.rst for instructions on building innovaminex QT, the intended-for-end-users, nice-graphical-interface, reference
-implementation of InnovaMinex.
-
-See doc/build-*.txt for instructions on building innovaminexd, the intended-for-services, no-graphical-interface, reference
-implementation of innovaminex.
