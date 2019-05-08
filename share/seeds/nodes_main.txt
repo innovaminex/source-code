@@ -1,0 +1,20 @@
+# List of few fixed seed nodes for main network
+
+# IPv6 nodes
+2a07:5740:600:1::b9b8:e5f2
+2a07:5740:600:1::6920:610a
+2a01:4f8:140:3427::a8a9:a7ec
+2a01:4f8:140:3427::1e2c:d497
+2a01:4f8:140:3427::d053:c804
+2a01:4f8:140:3427::78ad:6fd4
+2a01:4f8:140:3427::fd5c:1745
+
+# Onion nodes
+inxnetgwl4madfph.onion
+inxnet3huui3a6r4.onion 
+inxnetmczazknqq3.onion
+innovaqojfuc4lze.onion
+inxnetw43selp3hb.onion 
+inxnet3iliy3sky7.onion
+optimusi4r6nzx23.onion
+doctordwv3ovyiep.onion
