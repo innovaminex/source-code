@@ -35,10 +35,6 @@
 
 #include "sph_hamsi.h"
 
-#ifdef __cplusplus
-extern "C"{
-#endif
-
 #if SPH_SMALL_FOOTPRINT && !defined SPH_SMALL_FOOTPRINT_HAMSI
 #define SPH_SMALL_FOOTPRINT_HAMSI   1
 #endif
@@ -861,7 +857,3 @@ sph_hamsi512_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst)
 	hamsi_big_close(cc, ub, n, dst, 16);
 	hamsi_big_init(cc, IV512);
 }
-
-#ifdef __cplusplus
-}
-#endif

@@ -1,7 +1,9 @@
 # Copyright (c) 2018 InnovaMinex
+# Copyright (c) 2018 https://cwd.systems
 # Copyright (c) 2009-2010 Satoshi Nakamoto
 # Distributed under the MIT/X11 software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
+# Note: 18/11/2018 . Fall back to previous LevelDB version in case of build errors to fix.
 
 USE_UPNP:=0
 USE_WALLET:=1
@@ -136,11 +138,13 @@ OBJS= \
     obj/scrypt-x86.o \
     obj/scrypt-x86_64.o \
     obj/chainparams.o \
-    obj/raziel/cubehash.o \
-    obj/raziel/aes_helper.o \
-    obj/raziel/gost.o \
-    obj/raziel/skein.o\
-    obj/raziel/fugue.o
+    src/obj/raziel/sph_skein.h \
+    src/obj/raziel/sph_keccak.h \
+    src/obj/raziel/sph_gost.h \
+    src/obj/raziel/sph_inx.h \
+    src/obj/raziel/sph_types.h \
+    src/obj/raziel/sph_cubehash.h \
+    src/obj/raziel/sph_fugue.h
 
 ifeq (${USE_WALLET}, 1)
     DEFS += -DENABLE_WALLET
