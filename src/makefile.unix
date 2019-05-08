@@ -138,13 +138,11 @@ OBJS= \
     obj/scrypt-x86.o \
     obj/scrypt-x86_64.o \
     obj/chainparams.o \
-    src/obj/raziel/sph_skein.h \
-    src/obj/raziel/sph_keccak.h \
-    src/obj/raziel/sph_gost.h \
-    src/obj/raziel/sph_inx.h \
-    src/obj/raziel/sph_types.h \
-    src/obj/raziel/sph_cubehash.h \
-    src/obj/raziel/sph_fugue.h
+    obj/raziel/cubehash.o \
+    obj/raziel/aes_helper.o \
+    obj/raziel/gost.o \
+    obj/raziel/skein.o\
+    obj/raziel/fugue.o
 
 ifeq (${USE_WALLET}, 1)
     DEFS += -DENABLE_WALLET
